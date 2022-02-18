@@ -1,7 +1,9 @@
+const { profile } = require("../../db/index.js")
 module.exports = {
     name: "ready",
     once: true,
     async execute(client) {
+        return profile.delete(profile.all)
         let users = 0;
         const guilds = client.guilds.cache;
         for (const guildData of guilds) {

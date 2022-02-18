@@ -28,11 +28,6 @@ module.exports = {
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName);
 
-        if(commandName === "RESET" && message.author.id === "232466273479426049") {
-            const id = args[0];
-            await profile.delete(id);
-        };
-
         if (!command) return;
 
         try {
