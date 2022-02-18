@@ -5,6 +5,7 @@ module.exports = {
     name: "profile",
     description: "Shows a users profile",
     async execute(message, args) {
+        console.log(1);
         const member = args[0]
             ? message.mentions.members.first() ||
               (await message.guild.members.fetch(args[0])) ||

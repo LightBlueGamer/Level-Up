@@ -17,7 +17,7 @@ module.exports = {
         if(await canLevelUp(message.author.id)) {
             await levelUp(message.author.id);
             const { level } = await getProfile(message.author.id);
-            return message.reply({
+            message.reply({
                 content: `You have leveled up to level ${level}!`
             });
         };
