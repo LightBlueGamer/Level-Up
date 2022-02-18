@@ -1,13 +1,15 @@
 const client = require("../index");
 const { config, profile } = require("../../db/index");
 const { income, canLevelUp, levelUp, getProfile } = require("../modules/profile.js");
+const { getConfig } = require("../modules/config.js");
 
 const incomeCooldown = new Set();
 
 module.exports = {
     name: "messageCreate",
     async execute(message) {
-        const prefix = await config.get(`${message.guild.id}.prefix`);
+        const { prefix } = await getConfig(message.guild.id);
+        console.log(prefix);
 
         if (message.author.bot) return;
 
@@ -24,12 +26,14 @@ module.exports = {
         // Economy & Levels
 
         if (!message.content.startsWith(prefix)) return;
+        console.log("Passed prefix test");
 
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName);
 
         if (!command) return;
+        console.log("Passed command test");
 
         try {
             command.execute(message, args);
