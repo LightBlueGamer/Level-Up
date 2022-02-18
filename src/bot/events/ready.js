@@ -6,7 +6,6 @@ module.exports = {
         const guilds = client.guilds.cache;
         for (const guildData of guilds) {
             users += client.guilds.cache.get(guildData[0]).memberCount;
-            await config.ensure(guildData[0], serverConfig);
         }
         console.log(
             `Ready! Logged in as ${
