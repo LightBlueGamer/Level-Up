@@ -30,8 +30,14 @@ module.exports = {
         const pageIdx = page - 1;
 
         const sorted = users.sort((a, b) => {
-            if(a.total < b.total) return 1;
-            else if(a.total > b.total) return -1;
+            if(a.prestige < b.prestige) return 1;
+            if(a.prestige === b.prestige && a.level < b.level) return 1;
+            if(a.prestige === b.prestige && a.level === b.level && a.xp < b.xp) return 1;
+            if(a.prestige === b.prestige && a.level === b.level && a.xp === b.xp && a.balance+a.bank < b.balance+b.bank) return 1;
+            if(a.prestige === b.prestige && a.level === b.level && a.xp === b.xp && a.balance+a.bank > b.balance+b.bank) return -1;
+            if(a.prestige === b.prestige && a.level === b.level && a.xp > b.xp) return -1;
+            if(a.prestige === b.prestige && a.level > b.level) return -1;
+            if(a.prestige > b.prestige) return -1;
             else return 0;
         });
 
