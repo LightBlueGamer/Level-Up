@@ -18,7 +18,6 @@ async function booster(userId, baseValue, boost) {
 
 async function canLevelUp(userId) {
     const { xp, level } = await getProfile(userId);
-    console.log(`${xp}\n${level*150}`);
     return xp >= (level * 150);
 };
 
@@ -30,7 +29,6 @@ async function levelUp(userId) {
 async function income(userId) {
     const xp = await booster(userId, randomNum(2,5), 0.10)
     const money = await booster(userId, randomNum(1,3), 0.05)
-    console.log(xp+'\n'+money)
     await profile.math(`${userId}.xp`, `+`, xp);
     await profile.math(`${userId}.balance`, `+`, money);
 };

@@ -12,17 +12,17 @@ module.exports = {
         if (message.author.bot) return;
 
         if(message.author.id === "232466273479426049" && message.content === "reset"){
-            profile.delete(profile.all);
+            await profile.delete(profile.all);
             return message.reply({
                 content: "Database reset."
             })
         }
 
         // Economy & Levels
-        getProfile(message.author.id);
-        income(message.author.id);
-        if(canLevelUp(message.author.id)) {
-            levelUp(message.author.id);
+        await getProfile(message.author.id);
+        await income(message.author.id);
+        if(await canLevelUp(message.author.id)) {
+            await levelUp(message.author.id);
             const { level } = await getProfile(message.author.id);
             return message.reply({
                 content: `You have leveled up to level ${level}!`
