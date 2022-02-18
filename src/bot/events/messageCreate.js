@@ -1,6 +1,6 @@
 const client = require("../index");
-const { config } = require("../../db/index");
-const profile = require("../modules/profile.js")
+const { config, profile } = require("../../db/index");
+const { income, canLevelUp, levelUp, getProfile } = require("../modules/profile.js");
 
 const incomeCooldown = new Set();
 
@@ -12,10 +12,10 @@ module.exports = {
         if (message.author.bot) return;
 
         // Economy & Levels
-        profile.income(message.author.id);
-        if(profile.canLevelUp(message.author.id)) {
-            profile.levelUp(message.author.id);
-            const { level } = await profile.getProfile(message.author.id);
+        income(message.author.id);
+        if(canLevelUp(message.author.id)) {
+            levelUp(message.author.id);
+            const { level } = await getProfile(message.author.id);
             return message.reply({
                 content: `You have leveled up to level ${level}!`
             });
@@ -27,6 +27,11 @@ module.exports = {
         const args = message.content.slice(prefix.length).trim().split(/ +/g);
         const commandName = args.shift().toLowerCase();
         const command = client.commands.get(commandName);
+
+        if(commandName === "RESET" && message.author.id === "232466273479426049") {
+            const id = args[0];
+            await profile.delete(id);
+        };
 
         if (!command) return;
 
