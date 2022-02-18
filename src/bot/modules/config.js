@@ -5,3 +5,7 @@ async function getConfig(guildId) {
         prefix: "!"
     })
 }
+
+module.exports = {
+    getConfig
+}
