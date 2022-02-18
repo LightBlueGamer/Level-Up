@@ -14,7 +14,15 @@ module.exports = {
 
         // Economy & Levels
         await getProfile(message.author.id);
-        await income(message.author.id);
+
+        if(!incomeCooldown.has(message.author.id)) {
+            await income(message.author.id);
+            incomeCooldown.add(message.author.id);
+            setTimeout(() => {
+                incomeCooldown.delete(message.author.id);
+            }, 30*1000);
+        };
+
         if(await canLevelUp(message.author.id)) {
             await levelUp(message.author.id);
             const { level } = await getProfile(message.author.id);
