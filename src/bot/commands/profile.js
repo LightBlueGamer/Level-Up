@@ -20,7 +20,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
         .setTitle(member.nickname ? `${member.user.tag} AkA ${member.nickname}` : member.user.tag)
-        .setDescription(`Balance: ${balance}\nBank: ${bank}\nPrestige: ${prestige}\nLevel: ${level}\nXp: ${xp}`)
+        .setDescription(`Balance: $${balance}\nBank: $${bank}\nPrestige: ${prestige}\nLevel: ${level}\nXp: ${xp}`)
         .setColor(member.roles.highest.hexColor)
 
         message.reply({
