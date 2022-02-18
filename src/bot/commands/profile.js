@@ -11,7 +11,7 @@ module.exports = {
               message.guild.members.cache.find((x) => x.displayName === args[0])
             : message.member;
 
-        if (target.user.bot)
+        if (member.user.bot)
             return message.reply({
                 content: "Bots don't have a profile",
             });
