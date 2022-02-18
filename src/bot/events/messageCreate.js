@@ -12,6 +12,7 @@ module.exports = {
         if (message.author.bot) return;
 
         // Economy & Levels
+        getProfile(message.author.id);
         income(message.author.id);
         if(canLevelUp(message.author.id)) {
             levelUp(message.author.id);

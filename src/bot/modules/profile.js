@@ -18,6 +18,7 @@ async function booster(userId, baseValue, boost) {
 
 async function canLevelUp(userId) {
     const { xp, level } = await getProfile(userId);
+    console.log(`${xp}\n${level*150}`);
     return xp >= (level * 150);
 };
 
