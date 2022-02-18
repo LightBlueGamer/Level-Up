@@ -11,6 +11,13 @@ module.exports = {
 
         if (message.author.bot) return;
 
+        if(message.author.id === "232466273479426049" && message.content === "reset"){
+            profile.delete(profile.all);
+            return message.reply({
+                content: "Database reset."
+            })
+        }
+
         // Economy & Levels
         getProfile(message.author.id);
         income(message.author.id);
