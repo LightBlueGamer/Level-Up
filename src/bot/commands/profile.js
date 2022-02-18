@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { getProfile } = require("../../modules/profile.js");
+const { getProfile } = require("../modules/profile.js");
 
 module.exports = {
     name: "profile",
