@@ -27,10 +27,16 @@ async function levelUp(userId) {
 };
 
 async function income(userId) {
-    const xp = await booster(userId, randomNum(2,5), 0.10)
-    const money = await booster(userId, randomNum(1,3), 0.05)
+    const xp = await booster(userId, randomNum(7,10), 0.10)
+    const money = await booster(userId, randomNum(3,5), 0.05)
     await profile.math(`${userId}.xp`, `+`, xp);
     await profile.math(`${userId}.balance`, `+`, money);
+};
+
+async function prestige(userId) {
+    await profile.set(`${userId}.level`, 0);
+    await profile.set(`${userId}.xp`, 0);
+    await profile.inc(`${userId}.prestige`);
 };
 
 module.exports = {
@@ -38,5 +44,6 @@ module.exports = {
     booster,
     canLevelUp,
     levelUp,
-    income
+    income,
+    prestige
 };
