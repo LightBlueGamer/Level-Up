@@ -52,7 +52,8 @@ module.exports = {
             })
             for(let i=0; i<top10.length; i++) {
                 const ind = top10[i];
-                embed.addField(`#${sorted.indexOf(ind)+1} ${ind.name}`,`Balance: $${ind.balance} - Bank: $${ind.bank}\nPrestige: ${ind.prestige} - Level: ${ind.level} - Exp: ${ind.xp}`)
+                embed.addField(`#${sorted.indexOf(ind)+1} ${ind.name}`,`Balance: $${ind.balance} - Bank: $${ind.bank}\nPrestige: ${ind.prestige} - Level: ${ind.level} - Exp: ${ind.xp}`, true)
+                if(i % 2 === 1) embed.addField(`\u200b`, `\u200b`, true)
             };
             return message.reply({
                 embeds: [embed]
